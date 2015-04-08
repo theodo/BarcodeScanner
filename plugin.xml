@@ -300,7 +300,30 @@
         <framework src="src/windows8/lib/ZXing.winmd" custom="true" />
         <framework src="src/windows8/lib/WinRTBarcodeReader.winmd" custom="true" />
     </platform>
-
+    
+    <!-- Windows Universal -->
+    <platform name="windows">
+        <js-module src="src/windows8/BarcodeScannerProxy.js" name="BarcodeScannerProxy">
+            <merges target="" />
+        </js-module>
+        <config-file target="package.appxmanifest" parent="/Package/Capabilities">
+            <DeviceCapability Name="webcam" />
+        </config-file>
+    
+        <config-file target="package.appxmanifest" parent="/Package">
+            <Extensions>
+                <Extension Category="windows.activatableClass.inProcessServer">
+                    <InProcessServer>
+                        <Path>CLRHost.dll</Path>
+                        <ActivatableClass ActivatableClassId="WinRTBarcodeReader.Reader" ThreadingModel="both" />
+                    </InProcessServer>
+                </Extension>
+            </Extensions>
+        </config-file>
+        <framework src="src/windows8/lib/ZXing.winmd" custom="true" />
+        <framework src="src/windows8/lib/WinRTBarcodeReader.winmd" custom="true" />
+    </platform>
+    
     <!-- Windows Phone 8 -->
     <platform name="wp8">
 
